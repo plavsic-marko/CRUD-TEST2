@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": "22a5",
+      "name": "Novak",
+      "username": "Djokovic",
+      "email": "novak@gmail.com",
+      "phone": 225554
+    },
+    {
+      "id": "98d3",
+      "name": "Teodora",
+      "username": "Tea",
+      "email": "TEA@gmail.com",
+      "phone": 44556
+    },
+    {
+      "id": "d392",
+      "name": "marko",
+      "username": "plavsic",
+      "email": "markplavi@yahoo.com",
+      "phone": 643425834
+    },
+    {
+      "id": "8a1d",
+      "name": "Marko 3",
+      "username": "Plavsic",
+      "email": "proba@gmail.com",
+      "phone": 12345
+    },
+    {
+      "id": "c97e",
+      "name": "Proba",
+      "username": "Test",
+      "email": "proba@gmail.com",
+      "phone": 1122
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+.main_page{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.abb_button{
+    display: flex;
+    justify-content: end;
+}
