@@ -3,7 +3,7 @@ import apiClient from "../services/apiClient";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import userService from "../services/user-Service";
+import userService from "../services/user-service";
 
 interface User {
   id?: number;

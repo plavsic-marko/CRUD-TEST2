@@ -1,4 +1,4 @@
-import Switch from "@mui/material/Switch";
+/*import Switch from "@mui/material/Switch";
 import React, { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -19,4 +19,4 @@ export const ColorModeSwitch = () => {
       <Switch onChange={toggleDarkTheme} />
     </div>
   );
-};
+};*/
