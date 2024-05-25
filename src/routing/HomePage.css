@@ -4,7 +4,32 @@
     padding: 2rem;
 }
 
+.black{
+    background-color: white;
+    color: black
+}
+
+.white{
+    background-color: rgb(51,51,51);
+    color: white;
+}
+
+
+
+
+
+
 .abb_button{
     display: flex;
     justify-content: end;
+}
+
+.buttonStyleLight{
+    background-color: blue;
+    color: white;
+}
+
+.buttonStyleDark{
+    background-color: pink;
+    color: black;
 }

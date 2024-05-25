@@ -12,18 +12,30 @@ import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import userService, { User } from "../services/user-service";
-import { ColorModeSwitch } from "./ColorModeSwitch";
+import { useTheme } from "../context/themeContext";
 
-const headRowStyle = {
+const headRowStyleLight = {
   color: "black",
   fontWeight: 600,
   borderBottom: "1px solid black",
 };
 
-const fieldTextName = {
+const headRowStyleBlack = {
+  color: "white",
+  fontWeight: 600,
+  borderBottom: "1px solid white",
+};
+
+const fieldTextNameLight = {
   color: "black",
   fontWeight: 550,
   borderBottom: "1px solid black",
+};
+
+const fieldTextNameDark = {
+  color: "white",
+  fontWeight: 550,
+  borderBottom: "1px solid white",
 };
 
 const fieldText = {
@@ -35,6 +47,9 @@ const HomePage = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const lightTheme = theme.includes("light");
+  console.log(lightTheme);
 
   const getUsers = () => {
     setLoading(true);
@@ -78,11 +93,16 @@ const HomePage = () => {
         </div>
       )}
 
-      <div className="main_page">
+      <div className={lightTheme ? "black" : "white"}>
         <div>
-          <h1 className="headerContainer">List of Users</h1>
-          <ColorModeSwitch />
+          <h1 className={lightTheme ? "black" : "white"}>List of Users</h1>
         </div>
+        <button
+          className={lightTheme ? "buttonStyleLight" : "buttonStyleDark"}
+          onClick={toggleTheme}
+        >
+          Thema
+        </button>
         <div className="abb_button">
           {" "}
           <Link to="/create">
@@ -105,19 +125,34 @@ const HomePage = () => {
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell sx={headRowStyle} align="center">
+                  <TableCell
+                    sx={lightTheme ? headRowStyleLight : headRowStyleBlack}
+                    align="center"
+                  >
                     Name
                   </TableCell>
-                  <TableCell sx={headRowStyle} align="right">
+                  <TableCell
+                    sx={lightTheme ? headRowStyleLight : headRowStyleBlack}
+                    align="right"
+                  >
                     User Name
                   </TableCell>
-                  <TableCell sx={headRowStyle} align="right">
+                  <TableCell
+                    sx={lightTheme ? headRowStyleLight : headRowStyleBlack}
+                    align="right"
+                  >
                     Email
                   </TableCell>
-                  <TableCell sx={headRowStyle} align="right">
+                  <TableCell
+                    sx={lightTheme ? headRowStyleLight : headRowStyleBlack}
+                    align="right"
+                  >
                     Phone
                   </TableCell>
-                  <TableCell sx={headRowStyle} align="center">
+                  <TableCell
+                    sx={lightTheme ? headRowStyleLight : headRowStyleBlack}
+                    align="center"
+                  >
                     Action
                   </TableCell>
                 </TableRow>
@@ -128,22 +163,38 @@ const HomePage = () => {
                     key={user.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell sx={fieldText} scope="row" align="center">
+                    <TableCell
+                      sx={lightTheme ? fieldTextNameLight : fieldTextNameDark}
+                      scope="row"
+                      align="center"
+                    >
                       <div className="nameContainer">
                         <div className="title"></div>
                         {user.name}
                       </div>
                     </TableCell>
-                    <TableCell sx={fieldText} align="right">
+                    <TableCell
+                      sx={lightTheme ? fieldTextNameLight : fieldTextNameDark}
+                      align="right"
+                    >
                       {user.username}
                     </TableCell>
-                    <TableCell sx={fieldText} align="right">
+                    <TableCell
+                      sx={lightTheme ? fieldTextNameLight : fieldTextNameDark}
+                      align="right"
+                    >
                       {user.email}
                     </TableCell>
-                    <TableCell sx={fieldText} align="right">
+                    <TableCell
+                      sx={lightTheme ? fieldTextNameLight : fieldTextNameDark}
+                      align="right"
+                    >
                       {user.phone}
                     </TableCell>
-                    <TableCell sx={fieldText} align="right">
+                    <TableCell
+                      sx={lightTheme ? fieldTextNameLight : fieldTextNameDark}
+                      align="right"
+                    >
                       <Link to={"/update/" + user.id}>
                         <Button
                           variant="contained"
