@@ -2,14 +2,17 @@ import { useFormik } from "formik";
 import { registerSchema } from "../schema";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
-import { Link } from "react-router-dom";
-import { FormRegister, MainRegister } from "./RegisterStyled";
+import { Link, useNavigate } from "react-router-dom";
+import { FormRegister, InputStyled, MainRegister } from "./RegisterStyled";
+import axios from "axios";
 
 const onSubmit = async (values: any, actions: any) => {
   console.log("prosao"), console.log(values), console.log(actions);
+  axios.post("/").then((res) => res.data);
 };
 
 const Register = () => {
+  const navigate = useNavigate();
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
     useFormik({
       initialValues: {
@@ -25,7 +28,14 @@ const Register = () => {
       <MainRegister>
         <h1>Register</h1>
         <FormRegister onSubmit={handleChange}>
-          <label htmlFor="userName">Username</label>
+          <label htmlFor="userName">
+            Username{" "}
+            {touched && errors ? (
+              <ClearIcon />
+            ) : touched && !errors ? (
+              <CheckIcon />
+            ) : null}
+          </label>
           <input
             id="username"
             type="text"
@@ -54,7 +64,7 @@ const Register = () => {
           )}
 
           <label htmlFor="password">Confirm Password</label>
-          <input
+          <InputStyled
             id="confirmPass"
             type="password"
             name="confirmPass"
@@ -64,7 +74,7 @@ const Register = () => {
             className={
               errors.confirmPass && touched.confirmPass ? "input-error" : ""
             }
-          ></input>
+          ></InputStyled>
           {errors.confirmPass && touched.confirmPass && (
             <p className="input_error_message">{errors.confirmPass}</p>
           )}
@@ -74,11 +84,7 @@ const Register = () => {
           <p>
             Already registred?
             <br />
-            <span className="">
-              <Link to="/homePage">
-                <a href="#">Sign In</a>
-              </Link>
-            </span>
+            <button onClick={() => navigate("/homePage")}>Sign In</button>
           </p>
         </FormRegister>
       </MainRegister>
