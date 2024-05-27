@@ -3,7 +3,20 @@ import { registerSchema } from "../schema";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Link, useNavigate } from "react-router-dom";
-import { FormRegister, InputStyled, MainRegister } from "./RegisterStyled";
+import {
+  ButtonStyledGray,
+  CheckIconStyledGreen,
+  ClearIconStyledRed,
+  DivStyledFlexCenter,
+  ErrorParagraph,
+  FormRegister,
+  H1Styled,
+  InputParagraphStyled,
+  InputStyled,
+  LabelStyled,
+  MainRegister,
+  ParagraphStyled,
+} from "./RegisterStyled";
 import axios from "axios";
 
 const onSubmit = async (values: any, actions: any) => {
@@ -26,44 +39,49 @@ const Register = () => {
   return (
     <>
       <MainRegister>
-        <h1>Register</h1>
+        <H1Styled>Sada cekamo Dusana, da nam napravi Server </H1Styled>
         <FormRegister onSubmit={handleChange}>
-          <label htmlFor="userName">
-            Username{" "}
-            {touched && errors ? (
-              <ClearIcon />
-            ) : touched && !errors ? (
-              <CheckIcon />
+          <LabelStyled htmlFor="userName">
+            Username
+            {touched.username && errors.username ? (
+              <ClearIconStyledRed />
+            ) : touched.username && !errors.username ? (
+              <CheckIconStyledGreen />
             ) : null}
-          </label>
-          <input
+          </LabelStyled>
+          <InputStyled
             id="username"
             type="text"
             name="username"
             value={values.username}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={errors.username && touched.username ? "input-error" : ""}
-          ></input>
+          ></InputStyled>
           {errors.username && touched.username && (
-            <p className="input_error_message">{errors.username}</p>
+            <ErrorParagraph>{errors.username}</ErrorParagraph>
           )}
 
-          <label htmlFor="password">Password</label>
-          <input
+          <LabelStyled htmlFor="password">
+            Password
+            {touched.password && errors.password ? (
+              <ClearIconStyledRed />
+            ) : touched.password && !errors.password ? (
+              <CheckIconStyledGreen />
+            ) : null}
+          </LabelStyled>
+          <InputStyled
             id="password"
             type="password"
             name="password"
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={errors.password && touched.password ? "input-error" : ""}
-          ></input>
+          ></InputStyled>
           {errors.password && touched.password && (
-            <p className="input_error_message">{errors.password}</p>
+            <ErrorParagraph>{errors.password}</ErrorParagraph>
           )}
 
-          <label htmlFor="password">Confirm Password</label>
+          <LabelStyled htmlFor="password">Confirm Password</LabelStyled>
           <InputStyled
             id="confirmPass"
             type="password"
@@ -71,21 +89,22 @@ const Register = () => {
             value={values.confirmPass}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={
-              errors.confirmPass && touched.confirmPass ? "input-error" : ""
-            }
           ></InputStyled>
-          {errors.confirmPass && touched.confirmPass && (
-            <p className="input_error_message">{errors.confirmPass}</p>
+          {values.confirmPass !== values.password ? (
+            <InputParagraphStyled>
+              Proveri kako si nakucao sifru
+            </InputParagraphStyled>
+          ) : (
+            <ErrorParagraph>{errors.confirmPass}</ErrorParagraph>
           )}
 
-          <button type="submit">Sign Up</button>
-
-          <p>
-            Already registred?
-            <br />
-            <button onClick={() => navigate("/homePage")}>Sign In</button>
-          </p>
+          <ButtonStyledGray type="submit">Sign Up</ButtonStyledGray>
+          <DivStyledFlexCenter>
+            <ParagraphStyled>Already registred?</ParagraphStyled>
+            <ButtonStyledGray onClick={() => navigate("/homePage")}>
+              Sign In
+            </ButtonStyledGray>
+          </DivStyledFlexCenter>
         </FormRegister>
       </MainRegister>
     </>
