@@ -8,9 +8,11 @@ import {
   CheckIconStyledGreen,
   ClearIconStyledRed,
   DivStyledFlexCenter,
+  DivStyledFlexCenterMT1,
   ErrorParagraph,
   FormRegister,
   H1Styled,
+  H1StyledItalic,
   InputParagraphStyled,
   InputStyled,
   LabelStyled,
@@ -39,7 +41,9 @@ const Register = () => {
   return (
     <>
       <MainRegister>
-        <H1Styled>Sada cekamo Dusana, da nam napravi Server </H1Styled>
+        <H1StyledItalic>
+          Sada cekamo Dusana, da nam napravi Server{" "}
+        </H1StyledItalic>
         <FormRegister onSubmit={handleChange}>
           <LabelStyled htmlFor="userName">
             Username
@@ -53,6 +57,7 @@ const Register = () => {
             id="username"
             type="text"
             name="username"
+            placeholder="Upisi Username..."
             value={values.username}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -73,6 +78,7 @@ const Register = () => {
             id="password"
             type="password"
             name="password"
+            placeholder="Budi mastovit..."
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -86,6 +92,7 @@ const Register = () => {
             id="confirmPass"
             type="password"
             name="confirmPass"
+            placeholder="Potvrdi sifru..."
             value={values.confirmPass}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -99,12 +106,12 @@ const Register = () => {
           )}
 
           <ButtonStyledGray type="submit">Sign Up</ButtonStyledGray>
-          <DivStyledFlexCenter>
-            <ParagraphStyled>Already registred?</ParagraphStyled>
+          <DivStyledFlexCenterMT1>
+            <ParagraphStyled>Already registered?</ParagraphStyled>
             <ButtonStyledGray onClick={() => navigate("/homePage")}>
               Sign In
             </ButtonStyledGray>
-          </DivStyledFlexCenter>
+          </DivStyledFlexCenterMT1>
         </FormRegister>
       </MainRegister>
     </>
